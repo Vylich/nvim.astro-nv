@@ -1,13 +1,13 @@
 local options = {
 
   base46 = {
-    theme = "doomchad", -- default theme
+    theme = "nightowl", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "doomchad", "one_light" },
+    theme_toggle = { "nightowl", "one_light" },
   },
 
 

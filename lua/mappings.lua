@@ -189,8 +189,16 @@ map(
   { desc = "whichkey query lookup" }
 )
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
-map("n", "<leader>a", "<cmd>:Gitsigns blame_line<cr>", { desc = "gitsigns blame" })
+map("n", "<leader>i", "<cmd>:Gitsigns blame_line<cr>", { desc = "gitsigns blame" })
 
 map("n", "<leader>1", "<cmd>:Neotree reveal filesystem<cr>", { desc = "set tab file" })
 map("n", "<leader>2", "<cmd>:Neotree reveal buffers<cr>", { desc = "set tab buffs" })
 map("n", "<leader>3", "<cmd>:Neotree reveal git_status<cr>", { desc = "set tab Git" })
+
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show JsDoc" })
+map("n", ">", "<cmd>:JsDoc<CR>", { desc = "JsDoc" })
+map("n", "<leader>a", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show Trouble" })
+
+map("n", "<C-D>", "<cmd>:DiffviewOpen<cr>", { desc = "Show Diff" })
+map("n", "<C-E>", "<cmd>:DiffviewClose<cr>", { desc = "Exit Diff" })
+map("n", "<C-W>", "<cmd>:DiffviewFileHistory<cr>", { desc = "Exit Diff" })

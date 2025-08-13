@@ -8,7 +8,7 @@ if not (vim.env.LAZY or (vim.uv or vim.loop).fs_stat(lazypath)) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
- 
+
 if not pcall(require, "lazy") then
   -- stylua: ignore
   vim.api.nvim_echo({ { ("Unable to load lazy from: %s\n"):format(lazypath), "ErrorMsg" }, { "Press any key to exit...", "MoreMsg" } }, true, {})
@@ -22,3 +22,9 @@ require "polish"
 vim.schedule(function() require "mappings" end)
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
+
+vim.opt.fillchars:append "diff:╱"
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#23384c" })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#37222c" })
+vim.api.nvim_set_hl(0, "DiffChange", { bg = "#1f2231" })
+vim.api.nvim_set_hl(0, "DiffText", { bg = "#394b70" })

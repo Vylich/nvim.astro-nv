@@ -452,10 +452,10 @@ return {
           type_opts = {
             float = {
               relative = "editor",
-              row = 0.3,
-              col = 0.25,
-              width = 0.5,
-              height = 0.4,
+              row = 0.2,
+              col = 0.15,
+              width = 0.7,
+              height = 0.6,
               border = "single",
             },
             horizontal = { location = "rightbelow", split_ratio = 0.3 },
@@ -485,4 +485,79 @@ return {
   },
 
   "nvchad/volt",
+  {
+    "Equilibris/nx.nvim",
+    lazy = false,
+
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("nx").setup {
+        -- Base command to run all other nx commands, some other values may be:
+        -- - `npm nx`
+        -- - `yarn nx`
+        -- - `pnpm nx`
+        nx_cmd_root = "npx nx",
+
+        -- Command running capabilities,
+        -- see nx.m.command-runners for more details
+        command_runner = require("nx.command-runners").terminal_cmd(),
+        -- Form rendering capabilities,
+        -- see nx.m.form-renderers for more detials
+        form_renderer = require("nx.form-renderers").telescope(),
+
+        -- Whether or not to load nx configuration,
+        -- see nx.loading-and-reloading for more details
+        read_init = true,
+      }
+    end,
+
+    opts = {
+      -- See below for config options
+      nx_cmd_root = "npx nx",
+    },
+
+    -- Plugin will load when you use these keys
+    keys = {
+      { "<leader>nx", "<cmd>Telescope nx actions<CR>", desc = "nx actions" },
+    },
+  },
+  {
+    "heavenshell/vim-jsdoc",
+    lazy = false,
+    ft = { "javascript", "javascript.jsx", "typescript", "typescript.tsx" },
+    build = "make install",
+  },
+  {
+    "sindrets/diffview.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFile",
+    },
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      presets = {
+        bottom_search = false,
+        command_palette = true,
+        long_message_to_split = true,
+      },
+    },
+  },
 }
