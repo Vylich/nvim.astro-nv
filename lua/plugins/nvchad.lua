@@ -560,4 +560,90 @@ return {
       },
     },
   },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("rainbow-delimiters.setup").setup {
+        strategy = {
+          vim = "rainbow-delimiters.strategy.local",
+        },
+        query = {
+          lua = "rainbow-blocks",
+          typescript = "rainbow-delimiters-react",
+          tsx = "rainbow-parens",
+          javascript = "rainbow-parens",
+        },
+        priority = {
+          [""] = 110,
+        },
+        highlight = {
+          "RainbowDelimiters1",
+          "RainbowDelimiters2",
+          "RainbowDelimiters3",
+          "RainbowDelimiters4",
+          "RainbowDelimiters5",
+          "RainbowDelimiters6",
+          "RainbowDelimiters7",
+        },
+      }
+    end,
+  },
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      delay = 0,
+      providers = { "lsp", "treesitter", "regex" },
+      filetypes_denylist = {
+        "snacks_picker_list",
+        "snacks_picker_preview",
+        "snacks_picker_input",
+        "oil",
+        "noice",
+      },
+      under_cursor = true,
+    },
+    config = function(_, opts)
+      local illuminate = require "illuminate"
+      illuminate.configure(opts)
+      -- turn off in inactive windows
+      vim.api.nvim_create_autocmd("WinLeave", {
+        callback = function() illuminate.pause() end,
+      })
+
+      vim.api.nvim_create_autocmd("WinEnter", {
+        callback = function() illuminate.resume() end,
+      })
+    end,
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
+    },
+    opts = { use_default_keymaps = false, max_join_length = 150, cursor_behavior = "hold" },
+  },
+  {
+    "MagicDuck/grug-far.nvim",
+    opts = { headerMaxWidth = 80 },
+    cmd = "GrugFar",
+    keys = {
+      {
+        "<leader>sr",
+        function()
+          local grug = require "grug-far"
+          local ext = vim.bo.buftype == "" and vim.fn.expand "%:e"
+          grug.open {
+            transient = true,
+            prefills = {
+              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+            },
+          }
+        end,
+        mode = { "n", "v" },
+        desc = "Search and Replace",
+      },
+    },
+  },
 }

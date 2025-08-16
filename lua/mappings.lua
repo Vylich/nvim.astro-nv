@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
+map("n", ";", ":", { desc = "CMD enter command test" })
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 map("n", "<leader>cx", function() require("nvchad.tabufline").closeAllBufs() end, { desc = "Close All Buffers" })
@@ -140,7 +140,7 @@ map(
 )
 
 -- terminal
-map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal test" })
 
 -- new terminals
 -- map(
