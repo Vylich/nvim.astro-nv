@@ -24,7 +24,8 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 vim.opt.fillchars:append "diff:╱"
-vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#23384c" })
-vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#37222c" })
-vim.api.nvim_set_hl(0, "DiffChange", { bg = "#1f2231" })
+vim.opt.termguicolors = true
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#2A4A2A", fg = "#6FAC60" })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#37222c", fg = "#D54E53" })
+vim.api.nvim_set_hl(0, "DiffChange", { bg = "#1f2231", fg = "#D7BA7D" })
 vim.api.nvim_set_hl(0, "DiffText", { bg = "#394b70" })
